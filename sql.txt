@@ -1,0 +1,46 @@
+CREATE TABLE "MyModel_doctor" (
+    "id" serial NOT NULL PRIMARY KEY,
+    "uname" varchar(20) NOT NULL,
+    "lname" varchar(20) NOT NULL,
+    "fname" varchar(20) NOT NULL,
+    "password" varchar(255) NOT NULL,
+    "reg_no" integer NOT NULL,
+    "phone" integer NOT NULL,
+    "email" varchar(255) NOT NULL,
+    "hospital_address" varchar(255) NOT NULL,
+    "hospital_name" varchar(255) NOT NULL,
+    "home_address" varchar(255) NOT NULL
+)
+;
+CREATE TABLE "MyModel_patient" (
+    "id" serial NOT NULL PRIMARY KEY,
+    "uname" varchar(20) NOT NULL,
+    "fname" varchar(20) NOT NULL,
+    "lname" varchar(20) NOT NULL,
+    "password" varchar(255) NOT NULL,
+    "dob" date NOT NULL,
+    "gender" varchar(10) NOT NULL,
+    "age" integer NOT NULL,
+    "phone" integer NOT NULL,
+    "email" varchar(255) NOT NULL,
+    "address" varchar(255) NOT NULL,
+    "doctor_id" integer REFERENCES "MyModel_doctor" ("id") DEFERRABLE INITIALLY DEFERRED
+)
+;
+CREATE TABLE "MyModel_familymember" (
+    "id" serial NOT NULL PRIMARY KEY,
+    "uname" varchar(20) NOT NULL,
+    "fname" varchar(20) NOT NULL,
+    "lname" varchar(20) NOT NULL,
+    "password" varchar(255) NOT NULL,
+    "phone" integer NOT NULL,
+    "email" varchar(255) NOT NULL,
+    "address" varchar(255) NOT NULL
+)
+;
+CREATE TABLE "MyModel_patientfamily" (
+    "id" serial NOT NULL PRIMARY KEY,
+    "patient_id" integer NOT NULL REFERENCES "MyModel_patient" ("id") DEFERRABLE INITIALLY DEFERRED,
+    "familymember_id" integer NOT NULL REFERENCES "MyModel_familymember" ("id") DEFERRABLE INITIALLY DEFERRED
+)
+;

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head> 
+<title>Login</title> 
+</head>
+
+<body>
+	{% if error %}
+		 <div class="alert alert-error">  
+            <h4>Error!</h4> 
+            Wrong username and password combination!
+        </div>  
+    {% endif %}
+
+
+
+    <div class="well">  
+        <h1>Login</h1>  
+        <p> </p>  
+        <form class="form-horizontal" action="/login/" method="post">  
+            {% csrf_token %}  
+            {{ form.as_p }}  
+            <p class="form-actions">  
+                <input type="submit" value="Login" class="btn btn-primary">   
+            </p>  
+        </form>  
+    </div> 
+</body>
+
+</html>
